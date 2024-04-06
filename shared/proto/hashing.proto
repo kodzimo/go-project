@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "final-project-kodzimo/shared/proto"; // replace with your module name and path
+
+// The hashing service definition.
+service Hashing {
+  // Checks if the payload's hash already exists
+  rpc CheckHash(HashRequest) returns (HashResponse) {}
+
+  // Returns the hash for an existing payload
+  rpc GetHash(HashRequest) returns (HashResponse) {}
+
+  // Creates and stores a hash for a new payload
+  rpc CreateHash(HashRequest) returns (HashResponse) {}
+}
+
+// The request message containing the payload's data
+message HashRequest {
+  string payload = 1;
+}
+
+// The response message containing the hash
+message HashResponse {
+  string hash = 1;
+}
+
+/*
+Спасибо за предоставление вашего файла hashing.proto. Ваш файл proto выглядит корректно.
+В нем определены сервис Hashing и сообщения HashRequest и HashResponse.
+
+В вашем случае, поле payload в HashRequest содержит данные, которые вы хотите хешировать.
+Поэтому, вам нужно использовать req.GetPayload() для получения данных из req.
+*/

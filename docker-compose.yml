@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  gateway:
+    build: ./gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - hashing
+    networks:
+      - hashing_network
+
+  hashing:
+    build: ./hashing
+    ports:
+      - "50051:50051"
+    depends_on:
+      - redis
+    networks:
+      - hashing_network
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - hashing_network
+
+networks:
+  hashing_network:
